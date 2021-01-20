@@ -1,0 +1,35 @@
+---
+name: Trigger AWX
+author: Alan B. Christie
+description: Launches a named Template on an AWX server
+inputs:
+  template:
+    description: The name of the template to run
+    required: true
+  template-host:
+    description: The hostname of the AWX server, i.e. 'https://example.com'
+    required: true
+  template-user:
+    description: The username of a user that can execute the template
+    required: true
+  template-user-password:
+    description: The template user's password
+    required: true
+  template-var:
+    description: A template variable
+    required: false
+    default: image_tag
+  template-var-value:
+    description: A value for the template variable
+    required: false
+    default: latest
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+  - ${{ inputs.template }}
+  - ${{ inputs.template-host }}
+  - ${{ inputs.template-user }}
+  - ${{ inputs.template-user-password }}
+  - ${{ inputs.template-var }}
+  - ${{ inputs.template-var-value }}
