@@ -1,7 +1,11 @@
 # Trigger AWX action
 A GitHub Action that triggers execution of a named template on an [AWX] server.
 In addition to running the template you can inject a value for a template
-variable. If unused, the variable 'image_tag' is set to the value 'latest'.
+variable. If unused, the variable `image_tag` is set to the value `latest`.
+
+This action is typically used after you've built and published a container
+image, and you then want to trigger an AWX template that would deploy that
+image, say to a Kubernetes cluster.
 
 ## Inputs
 
