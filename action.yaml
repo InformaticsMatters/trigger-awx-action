@@ -2,6 +2,10 @@
 name: Trigger AWX
 author: Alan B. Christie
 description: Launches a named Template on an AWX server
+branding:
+  icon: play
+  color: orange
+
 inputs:
   template:
     description: The name of the template to run
@@ -23,6 +27,7 @@ inputs:
     description: A value for the template variable
     required: false
     default: latest
+
 runs:
   using: docker
   image: Dockerfile

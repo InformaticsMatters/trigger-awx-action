@@ -31,9 +31,8 @@ A template variable, default `image_tag`
 A value for the template variable, default `latest`
 
 ## Example usage
-Here we trigger the AWX template **My Template**, expected to be
-on the server **https://example.com**. The user must have **Execute**
-permissions for the chosen template.
+Here we trigger the AWX template **My Template**, where the user is
+expected to have **Execute** permissions for the template.
 
 ```yaml
 uses: informaticsmatters/trigger-awx-action@v1
@@ -45,7 +44,7 @@ with:
 ```
 
 You can also define the value of a template variable. For example,
-here we set the variable `ma_image_tag` to `latest` when triggering
+here we set the variable **ma_image_tag** to **latest** when triggering
 **My Template**: -
 
 ```yaml
@@ -59,9 +58,9 @@ with:
   template-var-value: latest
 ```
 
-As AWX might be considered an **Environment** you'd typically store your
-secrets in a GitHub **Environment** rather than use **Repository** or
-**Organisation** secrets.
+>   As AWX might be considered an **Environment** you'd typically store your
+    secrets in a GitHub **Environment** rather than use **Repository** or
+    **Organisation** secrets.
 
 ---
 
