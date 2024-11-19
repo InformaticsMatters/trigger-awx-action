@@ -10,6 +10,9 @@ This action is typically used after you've built and published a container
 image, and you then want to trigger an AWX template that would deploy that
 image, say to a Kubernetes cluster.
 
+>   Version 1 of the Action used the legacy tower-cli tool to trigger the template.
+    Verison 2 uses the new awxkit package.
+
 ## Inputs
 
 ### `template`
@@ -35,7 +38,7 @@ Here we trigger the AWX template **My Template**, where the user is
 expected to have **Execute** permissions for the template.
 
 ```yaml
-uses: informaticsmatters/trigger-awx-action@v1
+uses: informaticsmatters/trigger-awx-action@v2
 with:
   template: My Template
   template-host: https://example.com
@@ -48,7 +51,7 @@ here we set the variable **ma_image_tag** to **latest** when triggering
 **My Template**: -
 
 ```yaml
-uses: informaticsmatters/trigger-awx-action@v1
+uses: informaticsmatters/trigger-awx-action@v2
 with:
   template: My Template
   template-host: https://example.com

@@ -1,1 +1,1 @@
-ansible-tower-cli == 3.3.9
+awxkit == 24.6.1
