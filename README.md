@@ -10,8 +10,15 @@ This action is typically used after you've built and published a container
 image, and you then want to trigger an AWX template that would deploy that
 image, say to a Kubernetes cluster.
 
->   Version 1 of the Action used the legacy tower-cli tool to trigger the template.
-    Verison 2 uses the new awxkit package.
+>   Version 1 of the Action used the legacy [ansible-tower-cli] package
+    to trigger the template. Version 2 uses the [awxkit] package.
+
+>   Remember that Job Templates that you expect to run on AWX must be
+    executable by the user you provide.
+
+>   Any AWX Job Template you execute should have the **PROMPT ON LAUNCH**
+    option selected in the **EXTRA VARIABLES** section. If not, variables
+    passed-in via the underlying tower-cli command will be ignored.
 
 ## Inputs
 
@@ -67,4 +74,6 @@ with:
 
 ---
 
+[ansible-tower-cli]: https://pypi.org/project/ansible-tower-cli/
 [awx]: https://github.com/ansible/awx
+[awxkit]: https://pypi.org/project/awxkit/
