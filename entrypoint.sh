@@ -19,6 +19,7 @@ export CONTROLLER_PASSWORD=$4
 TEMPLATE_VAR=$5
 TEMPLATE_VAR_VALUE=$6
 
-echo "Launching Job Template ${TEMPLATE} and monitoring..."
 EXTRA_VARS={\"${TEMPLATE_VAR}\":\"${TEMPLATE_VAR_VALUE}\"}
+echo "Launching Job Template ${TEMPLATE} and monitoring..."
+echo "EXTRA_VARS=${EXTRA_VARS}"
 awx job_templates launch --monitor -e ${EXTRA_VARS} "${TEMPLATE}"
