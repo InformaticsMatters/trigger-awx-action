@@ -13,13 +13,29 @@
 # on an AWX server.
 
 TEMPLATE=$1
-export CONTROLLER_HOST=$2
-export CONTROLLER_USERNAME=$3
-export CONTROLLER_PASSWORD=$4
+TEMPLATE_HOST=$2
+TEMPLATE_USER=$3
+TEMPLATE_USER_PASSWORD=$4
 TEMPLATE_VAR=$5
 TEMPLATE_VAR_VALUE=$6
 
-EXTRA_VARS={\"${TEMPLATE_VAR}\":\"${TEMPLATE_VAR_VALUE}\"}
-echo "Launching Job Template ${TEMPLATE} and monitoring..."
-echo "EXTRA_VARS=${EXTRA_VARS}"
-awx job_templates launch --monitor -e ${EXTRA_VARS} "${TEMPLATE}"
+# Get the AWX Job Template ID from the Job Template name
+jtid=$(tower-cli job_template list -n "${TEMPLATE}" -f id \
+  -h "${TEMPLATE_HOST}" \
+  -u "${TEMPLATE_USER}" \
+  -p "${TEMPLATE_USER_PASSWORD}")
+
+# If we have a template ID (i.e. a number) then trigger it
+# and disable any input that might be expected by the Job.
+EXTRA_VARS="${TEMPLATE_VAR}=\'${TEMPLATE_VAR_VALUE}\'"
+if echo "${jtid}" | grep -Eq '^[0-9]+$'; then
+  echo "Launching Job ID ${jtid} and waiting..."
+  tower-cli job launch -J "${jtid}" --no-input --wait \
+    -h "${TEMPLATE_HOST}" \
+    -u "${TEMPLATE_USER}" \
+    -p "${TEMPLATE_USER_PASSWORD}" \
+    -e "${EXTRA_VARS}"
+else
+  echo "Job Template '${TEMPLATE}' does not exist (${jtid})"
+  exit 1
+fi
