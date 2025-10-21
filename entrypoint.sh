@@ -22,4 +22,4 @@ TEMPLATE_VAR_VALUE=$6
 EXTRA_VARS={\"${TEMPLATE_VAR}\":\"${TEMPLATE_VAR_VALUE}\"}
 echo "Launching Job Template ${TEMPLATE} and monitoring..."
 echo "EXTRA_VARS=${EXTRA_VARS}"
-awx job_templates launch --wait -e ${EXTRA_VARS} "${TEMPLATE}"
+awx job_templates launch --monitor -e ${EXTRA_VARS} "${TEMPLATE}" > /dev/null
