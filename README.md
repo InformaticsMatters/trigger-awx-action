@@ -45,7 +45,7 @@ Here we trigger the AWX template **My Template**, where the user is
 expected to have **Execute** permissions for the template.
 
 ```yaml
-uses: informaticsmatters/trigger-awx-action@v2
+uses: informaticsmatters/trigger-awx-action@v3
 with:
   template: My Template
   template-host: https://example.com
@@ -58,7 +58,7 @@ here we set the variable **ma_image_tag** to **latest** when triggering
 **My Template**: -
 
 ```yaml
-uses: informaticsmatters/trigger-awx-action@v2
+uses: informaticsmatters/trigger-awx-action@v3
 with:
   template: My Template
   template-host: https://example.com
