@@ -1,1 +1,1 @@
-awxkit == 24.6.1
+alanbchristie-awxkit >= 1.0.2

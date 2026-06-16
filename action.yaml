@@ -20,13 +20,11 @@ inputs:
     description: The template user's password
     required: true
   template-var:
-    description: A template variable
+    description: A template variable. If omitted, the template is launched without any extra variables
     required: false
-    default: image_tag
   template-var-value:
     description: A value for the template variable
     required: false
-    default: latest
 
 runs:
   using: docker

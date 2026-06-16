@@ -1,7 +1,8 @@
 # Trigger AWX action
 A GitHub Action that triggers execution of a named template on an [AWX] server.
 In addition to running the template you can inject a value for a template
-variable. If unused, the variable `image_tag` is set to the value `latest`.
+variable. If no `template-var` is provided the template is launched without
+any extra variables.
 
 This action essentially allows you to run templates in a remote
 AWX server, given a template name, and template user credentials.
@@ -12,6 +13,8 @@ image, say to a Kubernetes cluster.
 
 >   Version 1 of the Action used the legacy [ansible-tower-cli] package
     to trigger the template. Version 2 uses the [awxkit] package.
+    Version 4 adds optional template variables and values,
+    and uses Python 3.14 and the `awxkit` published by `alanbchristie`.
 
 >   Remember that Job Templates that you expect to run on AWX must be
     executable by the user you provide.
@@ -35,10 +38,10 @@ image, say to a Kubernetes cluster.
 **Required** The template user's password
 
 ### `template-var`
-A template variable, default `image_tag`
+A template variable. If omitted, the template is launched without any extra variables
 
 ### `template-var-value`
-A value for the template variable, default `latest`
+A value for the template variable
 
 ## Example usage
 Here we trigger the AWX template **My Template**, where the user is
